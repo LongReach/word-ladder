@@ -1,3 +1,7 @@
+import random
+
+print("*** WORD GRAPH ***")
+
 class Node():
 
     factory_func = None
@@ -82,3 +86,7 @@ def find_matches(word):
 
 def string_list(node_list):
     return [n.word for n in node_list]
+
+def get_random_word():
+    return word_list[random.randrange(len(word_list))]
+

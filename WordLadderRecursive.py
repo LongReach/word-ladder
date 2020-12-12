@@ -1,10 +1,8 @@
 import random
 import word_graph as wg
+import test_framework as test
 
-print("Matches for 'DUMB'")
-print(wg.find_matches("DUMB"))
-print("Matches for 'CART'")
-print(wg.find_matches("CART"))
+test.preliminary_test()
 
 def node_factory(word):
     return wg.Node(word)
@@ -58,19 +56,6 @@ def do_word_ladder(src, dest):
     result = [src_node] + get_steps(src_node, dest)
     print("Steps are: ", wg.string_list(result))
 
-do_word_ladder("SEED", "TREE")
-do_word_ladder("NOPE", "BOOM")
-do_word_ladder("HEAD", "TAIL")
-do_word_ladder("TOAD", "FROG")
-do_word_ladder("COOK", "FISH")
+test.set_word_ladder_func(do_word_ladder)
+test.run_test()
 
-# Do some random ladders
-count = 20
-while(count):
-    word1 = wg.word_list[random.randrange(len(wg.word_list))]
-    word2 = wg.word_list[random.randrange(len(wg.word_list))]
-    print("Comparing random {} to {}".format(word1, word2))
-
-    if len(word1) == len(word2):
-        do_word_ladder(word1, word2)
-        count = count - 1
