@@ -1,7 +1,16 @@
-import random
 import word_graph as wg
 import test_framework as test
-import copy
+import argparse
+
+# Parse arguments
+parser = argparse.ArgumentParser(description='A-Star solution to word ladder problem, please read documentation.')
+parser.add_argument("-v", "--verbose", help="If set, print extra info", action="store_true")
+parser.add_argument("--test", help="Which test to run: 0=simple, 1=full, 2=difficult words", type=int, default=1)
+parser.add_argument("--seed", help="A seed for random number generation (to reproduce same set of games)", type=int, default=-1)
+args = parser.parse_args()
+
+test.set_verbose(args.verbose)
+wg.set_random_seed(None if args.seed == -1 else args.seed)
 
 # This implementation of Node is specific to the A-Star algorithm. It contains data that's not shared
 # with other algorithms.
@@ -130,7 +139,7 @@ def solve_a_star(src, dest):
         out_list.insert(0, final_node)
         final_node = final_node.parent
     #print("Output list for {} to {} is: ".format(src, dest), wg.string_list(out_list))
-    print("Closed list size {}, best cost {}, worst cost {}".format(len(closed_list), best_solution, worst_cost))
+    test.info("Closed list size {}, best cost {}, worst cost {}".format(len(closed_list), best_solution, worst_cost))
     return out_list
 
 def do_word_ladder(src, dest, max_dist=20):
@@ -139,11 +148,10 @@ def do_word_ladder(src, dest, max_dist=20):
     if src_node is None: return None
     dest_node = wg.Node.find_node(dest)
     if dest_node is None or dest_node is src_node: return None
-    print("Word ladder from {} to {}, max_dist={}".format(src, dest, max_dist))
     result = solve_a_star(src_node, dest_node)
+    if result is None or len(result) == 0: return None
     str_list = wg.string_list(result)
-    print("Steps are: ", str_list)
     return str_list
 
 test.set_word_ladder_func(do_word_ladder)
-test.run_test()
+test.run_test(args.test)

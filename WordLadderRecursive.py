@@ -1,9 +1,16 @@
-import random
 import word_graph as wg
 import test_framework as test
-import copy
+import argparse
 
-test.preliminary_test()
+# Parse arguments
+parser = argparse.ArgumentParser(description='Recursive solution to word ladder problem, please read documentation.')
+parser.add_argument("-v", "--verbose", help="If set, print extra info", action="store_true")
+parser.add_argument("--test", help="Which test to run: 0=simple, 1=full, 2=difficult words", type=int, default=1)
+parser.add_argument("--seed", help="A seed for random number generation (to reproduce same set of games)", type=int, default=-1)
+args = parser.parse_args()
+
+test.set_verbose(args.verbose)
+wg.set_random_seed(None if args.seed == -1 else args.seed)
 
 # MEMOIZATION
 # -------------------------------------------------------
@@ -45,7 +52,7 @@ def node_factory(word):
 
 wg.Node.set_factory_func(node_factory)
 wg.create_nodes()
-
+test.preliminary_test()
 
 # RECURSIVE SOLUTION
 # -------------------------------------------------------
@@ -85,7 +92,7 @@ def get_steps(path, dest, remaining_steps):
             return None
         else:
             result = path + current_node.memoization_list
-            print("A fast solution: ", wg.string_list(result))
+            test.info("A fast solution: ", wg.string_list(result))
             return current_node.memoization_list
 
     current_node.visited_flag = True
@@ -95,7 +102,7 @@ def get_steps(path, dest, remaining_steps):
         if m is dest:
             # this is our goal!
             result = path + [m]
-            print("A slow solution: ", wg.string_list(result))
+            test.info("A slow solution: ", wg.string_list(result))
             current_node.visited_flag = False
             return [m]
 
@@ -130,13 +137,14 @@ def do_word_ladder(src, dest, max_dist=20):
     path = [src_node]
     dest_node = wg.Node.find_node(dest)
     if dest_node is None or dest_node is src_node: return None
-    print("Word ladder from {} to {}, max_dist={}".format(src, dest, max_dist))
+    if src_node.network_number != dest_node.network_number: return None
     MemNode.clear_memoization()
-    result = [src_node] + get_steps(path, dest_node, max_dist)
+    result = get_steps(path, dest_node, max_dist)
+    if result is None: return None
+    result = [src_node] + result
     str_list = wg.string_list(result)
-    print("Steps are: ", str_list)
     return str_list
 
 test.set_word_ladder_func(do_word_ladder)
-test.run_test()
+test.run_test(args.test)
 

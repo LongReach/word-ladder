@@ -1,6 +1,5 @@
 import random
-
-print("*** WORD GRAPH ***")
+import time
 
 # Both the recursive and A-Star solutions to the word ladder problem rely on a connected graph. Each node
 # on the graph represents a word, and its neighbors are the nodes that can be reached by changing a single
@@ -18,11 +17,16 @@ class Node(object):
     # The entry for "DOO*" would contain "DOOM" and "DOOR"
     wildcard_node_dict = {}
 
+    # Each node is a part of a network of mutually connected nodes, each network has own number
+    # Contains lists of nodes, one for each network
+    networks = []
+
     factory_func = None
 
     def __init__(self, word):
         self.word = word
         self.neighbors = []
+        self.network_number = -1 # See explanation of networks above
 
     def add_neighbor(self, node):
         self.neighbors.append(node)
@@ -102,6 +106,37 @@ class Node(object):
                         return node
             return None
 
+    # Determines what nodes belong to what networks. This is useful because no connection is possible between
+    # nodes in separate networks
+    @staticmethod
+    def find_isolated_nodes():
+        current_network = 0
+        while(True):
+            # find a node without a network tag
+            start_node = None
+            for n in Node.node_list:
+                if n.network_number == -1:
+                    start_node = n
+                    break
+            if start_node is None:
+                # We've processed all the nodes, exit while loop
+                break
+
+            nodes_in_network = []
+
+            # open_list will contain nodes we need to visit, b/c they're connected to a node we've already been to.
+            open_list = [start_node]
+            while len(open_list) > 0:
+                node = open_list.pop(0)
+                for m in node.neighbors:
+                    if m.network_number == -1 and m not in open_list:
+                        open_list.append(m)
+                nodes_in_network.append(node)
+                node.network_number = current_network
+
+            # We've completed a network
+            Node.networks.append(nodes_in_network)
+            current_network = current_network + 1
 
 # List of all the words in the dictionary
 word_list = []
@@ -120,6 +155,7 @@ for f_name in file_list:
 
 def create_nodes():
     Node.populate_nodes_from_word_list(word_list)
+    Node.find_isolated_nodes()
 
 # Return all the words that are one letter away from the one passed in
 def find_matches(word):
@@ -128,7 +164,30 @@ def find_matches(word):
 
 # Given a node list, return a list of words
 def string_list(node_list):
+    if node_list is None:
+        return []
     return [n.word for n in node_list]
+
+# First return value: whether or not a path is possible
+# Second return value: True if both nodes are valid
+def is_path_possible(word1, word2):
+    node1 = Node.find_node(word1)
+    node2 = Node.find_node(word2)
+    if node1 is None or node2 is None: return False, False
+    return node1.network_number == node2.network_number, True
+
+the_random_seed = 0
+
+def set_random_seed(seed):
+    global the_random_seed
+    if seed is None:
+        # choose a seed at random (sort of)
+        seed = int(time.time()) % 100000
+    the_random_seed = seed
+    random.seed(the_random_seed)
+
+def get_random_seed():
+    return the_random_seed
 
 # Return a random word from the words available
 def get_random_word(length=0):

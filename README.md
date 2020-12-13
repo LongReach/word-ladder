@@ -75,3 +75,19 @@ Comments within the file explain the workings in more detail.
 Because both solutions rely on the same connected graph infrastructure, code for creating and examining this graph is shared. However, each method uses its own implementation of the Node class.
 
 Both solutions also use the same test framework, which runs multiple instances of the game and collects statistics.
+
+## Command Line Arguments
+
+Both algorithms support command line arguments. Help can be accessed with:
+
+> python WordLadderRecursive.py --help
+>
+> python WordLadderAStar.py --help
+
+Argument | Description
+---------|------------
+`help` | Prints some help text.
+`verbose` | Prints extra debugging information.
+`seed` | A seed for random number generation. Use same seed for repeatable results.
+`test` | Which test to run. 0 = basic test, 1 = full test, 2 = hard words test
+
