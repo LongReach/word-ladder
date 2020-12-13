@@ -2,7 +2,7 @@ import random
 
 print("*** WORD GRAPH ***")
 
-class Node():
+class Node(object):
 
     node_list = []
     # Given a wildcard-ed word (e.g. "DOO*", "CE*T"), the wildcard-ed word is a key to a list of nodes that match
@@ -14,8 +14,6 @@ class Node():
         self.word = word
         self.visited_flag = False
         self.neighbors = []
-        # All known memoization lists that have this node on their route
-        self.memoization_list = None
 
     def add_neighbor(self, node):
         self.neighbors.append(node)
@@ -29,6 +27,7 @@ class Node():
         return new_list
 
     def get_word_distance(self, other_node):
+        if self is other_node: return 0
         dist = 0
         for idx in range(len(self.word)):
             if self.word[idx] != other_node.word[idx]:
@@ -37,12 +36,6 @@ class Node():
 
     def list_matches(self):
         return [node.word for node in self.neighbors]
-
-    def set_memoize_list(self, the_list):
-        self.memoization_list = the_list
-
-    def get_memoize_list(self):
-        return self.memoization_list
 
     # The factory function allows us to make instances of Node subclasses
     @staticmethod
@@ -108,7 +101,8 @@ for f_name in file_list:
         # Remove any words of zero length, add remaining words to big list
         word_list = word_list + [w for w in filter(lambda x: len(x) > 0, words)]
 
-Node.populate_nodes_from_word_list(word_list)
+def create_nodes():
+    Node.populate_nodes_from_word_list(word_list)
 
 def find_matches(word):
     node = Node.find_node(word)

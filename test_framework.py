@@ -34,6 +34,10 @@ def preliminary_test():
     print("Matches for 'CART'")
     print(wg.find_matches("CART"))
 
+def run_simple_test():
+    word_ladder_func("SEED", "TREE")
+    word_ladder_func("COOK", "FISH")
+
 def run_test():
     word_ladder_func("SEED", "TREE")
     word_ladder_func("NOPE", "BOOM")

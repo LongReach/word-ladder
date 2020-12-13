@@ -5,29 +5,46 @@ import copy
 
 test.preliminary_test()
 
-def node_factory(word):
-    return wg.Node(word)
-
-wg.Node.set_factory_func(node_factory)
-
 # MEMOIZATION
 # -------------------------------------------------------
 
-memoized_nodes = []
+class MemNode(wg.Node):
 
-# the_list contains a path from the first node in the list to the destination node, which is last
-def memoize_solution(the_list):
-    # Only bother if list is long enough to be useful
-    if the_list is None or len(the_list) <= 2:
-        return
-    first_node = the_list[0]
-    first_node.set_memoize_list(the_list[1:])
-    memoized_nodes.append(first_node)
+    memoized_nodes = []
 
-def clear_memoization():
-    for n in memoized_nodes:
-        n.set_memoize_list(None)
-    memoized_nodes.clear()
+    def __init__(self, word):
+        super().__init__(word)
+        # All known memoization lists that have this node on their route
+        self.memoization_list = None
+
+    def set_memoize_list(self, the_list):
+        self.memoization_list = the_list
+
+    def get_memoize_list(self):
+        return self.memoization_list
+
+    # the_list contains a path from the first node in the list to the destination node, which is last
+    @staticmethod
+    def memoize_solution(the_list):
+        # Only bother if list is long enough to be useful
+        if the_list is None or len(the_list) <= 2:
+            return
+        first_node = the_list[0]
+        first_node.set_memoize_list(the_list[1:])
+        MemNode.memoized_nodes.append(first_node)
+
+    @staticmethod
+    def clear_memoization():
+        for n in MemNode.memoized_nodes:
+            n.set_memoize_list(None)
+        MemNode.memoized_nodes.clear()
+
+def node_factory(word):
+    return MemNode(word)
+
+wg.Node.set_factory_func(node_factory)
+wg.create_nodes()
+
 
 # RECURSIVE SOLUTION
 # -------------------------------------------------------
@@ -87,7 +104,7 @@ def get_steps(path, dest, remaining_steps):
             path.pop(-1)
     current_node.visited_flag = False
     # Save the path from m to dest so we can use it later
-    memoize_solution(best_subpath)
+    MemNode.memoize_solution(best_subpath)
     return best_subpath
 
 def do_word_ladder(src, dest, max_dist=20):
@@ -98,7 +115,7 @@ def do_word_ladder(src, dest, max_dist=20):
     dest_node = wg.Node.find_node(dest)
     if dest_node is None or dest_node is src_node: return None
     print("Word ladder from {} to {}, max_dist={}".format(src, dest, max_dist))
-    clear_memoization()
+    MemNode.clear_memoization()
     result = [src_node] + get_steps(path, dest_node, max_dist)
     str_list = wg.string_list(result)
     print("Steps are: ", str_list)
