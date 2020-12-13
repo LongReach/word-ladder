@@ -137,9 +137,11 @@ def do_word_ladder(src, dest, max_dist=20):
     path = [src_node]
     dest_node = wg.Node.find_node(dest)
     if dest_node is None or dest_node is src_node: return None
+    if src_node.network_number != dest_node.network_number: return None
     MemNode.clear_memoization()
     result = get_steps(path, dest_node, max_dist)
-    result = [src_node] + ([] if result is None else result)
+    if result is None: return None
+    result = [src_node] + result
     str_list = wg.string_list(result)
     return str_list
 

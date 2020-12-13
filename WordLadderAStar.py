@@ -149,6 +149,7 @@ def do_word_ladder(src, dest, max_dist=20):
     dest_node = wg.Node.find_node(dest)
     if dest_node is None or dest_node is src_node: return None
     result = solve_a_star(src_node, dest_node)
+    if result is None or len(result) == 0: return None
     str_list = wg.string_list(result)
     return str_list
 

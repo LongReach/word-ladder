@@ -32,7 +32,9 @@ def ladder_func_wrapper(func_to_wrap):
         if result is None:
             result = []
             success = False
-        test_outcome_dict = {'words':result, 'src':word1, 'dest':word2, 'success':success, 'time':(end_time-start_time)}
+        possible_path, valid_nodes = wg.is_path_possible(word1, word2)
+        test_outcome_dict = {'words':result, 'src':word1, 'dest':word2, 'success':success, 'time':(end_time-start_time),
+                             'different_networks':(valid_nodes and not possible_path)}
         test_results.append(test_outcome_dict)
         return result
     return wrapper
@@ -49,10 +51,16 @@ def preliminary_test():
     info("Matches for 'CART'")
     info(wg.find_matches("CART"))
 
+    for network in wg.Node.networks:
+        if len(network) < 50:
+            info("small network: ", wg.string_list(network))
+
+
 # A very bare-bones test
 def simple_test():
     word_ladder_func("SEED", "TREE")
     word_ladder_func("COOK", "FISH")
+    word_ladder_func("AHOY", "SHIP")
     print("random word: ", wg.get_random_word())
     print("random word: ", wg.get_random_word())
     print("Random seed: ", wg.get_random_seed())
@@ -103,7 +111,6 @@ def full_test():
 def run_test(test_type):
     print("Running test ", test_type)
     if test_type == 0:
-        print("simple test")
         simple_test()
     elif test_type == 1:
         full_test()
@@ -122,6 +129,7 @@ def process_test_results():
     problem_length_entries = []
     problem_time = 2.0
     problem_time_entries = []
+    separate_network_entries = []
 
     print("")
     print("TEST RESULTS:")
@@ -135,7 +143,11 @@ def process_test_results():
             if len(t_o['words']) > problem_length:
                 problem_length_entries.append(t_o)
         else:
-            print("Failed for: {} to {}".format(t_o['src'], t_o['dest']))
+            path_info_str = ""
+            if t_o['different_networks']:
+                path_info_str = " (path impossible)"
+                separate_network_entries.append(t_o)
+            print("Failed for: {} to {}{}".format(t_o['src'], t_o['dest'], path_info_str))
 
         total_time = total_time + t_o['time']
         if t_o['time'] > longest_time_entry['time']:
@@ -160,3 +172,9 @@ def process_test_results():
         print("PROBLEM TIME ENTRIES:")
         for t_o in problem_time_entries:
             print(t_o['words'], " time={}".format(t_o['time']))
+
+    if len(separate_network_entries) > 0:
+        print("")
+        print("SEPARATE NETWORKS:")
+        for t_o in separate_network_entries:
+            print("{} to {}".format(t_o['src'], t_o['dest']))
