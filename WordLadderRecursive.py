@@ -48,10 +48,25 @@ wg.create_nodes()
 
 # RECURSIVE SOLUTION
 # -------------------------------------------------------
+#
+# The idea is to start from the source node and do a depth-first search through the connected graph to try to find the
+# destination node. Once it is reached, we take note of the length of the the solution and continue on with
+# the depth-first search. We prune the search tree to avoid pursuing solutions that are more costly than
+# the best solution we have so far.
+#
+# The memoization feature takes advantage of the fact that separate branches of the search tree may overlap,
+# sharing subbranches. If we've already solved a subbranch, we can just reuse the cached solution. Another way to
+# explain it: once we know the best route between Boston and New York, any potential route from London to New York
+# that passes through Boston only needs to be solved as far as Boston. Once we get there, we can use the already
+# cached instructions for getting from Boston to New York.
 
-# Given a path (a list of Nodes), try to compute the remainder of the path to the dest node
-# remaining_steps: number of steps we are permitted to get from last node in path to dest
-# Returns a remaining list of nodes (excluding those already in path) if any can be found, otherwise None
+# Given a path (a list of Nodes), try to compute the remainder of the path to the dest node.
+#
+# Params:
+#     path: list of nodes forming a path. The start node is always at the beginning
+#     dest: destination node
+#     remaining_steps: number of steps we are permitted to get from last node in path to dest node
+# Returns a list of remaining nodes to destination (excluding those already in path) if any can be found, otherwise None
 def get_steps(path, dest, remaining_steps):
     if remaining_steps == 0:
         # We already have a better solution, don't go further

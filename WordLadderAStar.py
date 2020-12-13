@@ -3,9 +3,8 @@ import word_graph as wg
 import test_framework as test
 import copy
 
-# MEMOIZATION
-# -------------------------------------------------------
-
+# This implementation of Node is specific to the A-Star algorithm. It contains data that's not shared
+# with other algorithms.
 class AStarNode(wg.Node):
 
     open_list = []  # Known nodes where we haven't examined neighbors
@@ -18,6 +17,7 @@ class AStarNode(wg.Node):
         self.est = 0
         self.parent = None
 
+    # Call before each running of the algorithm
     @staticmethod
     def reset_lists():
         AStarNode.open_list.clear()
@@ -29,6 +29,7 @@ class AStarNode(wg.Node):
             n.est = 1000000
             n.parent = None
 
+    # Returns the most promising node from the open list, according to the general rules of A-Star
     @staticmethod
     def pop_best_open_node():
         index = 0
@@ -52,17 +53,23 @@ test.preliminary_test()
 # --------------------------------------------
 # The idea of A-star:
 #
+# This is a breadth-first way of finding a path through a connected graph. It's generally a faster approach than
+# the recursive solution. It's analogous to pouring water on the start point; the water floods through the graph
+# in all directions until the goal point is reached. After that, we continue to pour water until we've satisfied
+# ourselves that it's not possible to find a better solution than those we've already uncovered. The water doesn't
+# spread at the same rate in all directions, but prefers the direction the goal is in. Only after it's exhausted
+# the direct approaches to the goal does it try the indirect ones.
+#
+# Heuristic:
+#
 # For each node, there's a cheapest known cost of getting to that node from the starting node and an estimate
 # of the cost remaining to get to the goal node. As the algorithm progresses, these numbers are updated.
 # We start with an open list, which contains known nodes for which we haven't yet examined the neighbors. As
-# the open list is processed, neighbors are added to the end of the open list and processed nodes are put in
-# the closed list.
+# the open list is processed, neighbors are discovered and added to the end of the open list, and processed nodes are
+# put in the closed list.
 #
 # If a neighbor being examined is already in the closed list, but we have a cheaper way of getting to it, we update
 # that neighbor's cost and set a pointer back to the node we got there from.
-
-# Cached shortcut: at each node, see if there is a shortcut with that node in it. If there is, see if shortcut also
-# includes the destination.
 
 def solve_a_star(src, dest):
 
@@ -78,7 +85,9 @@ def solve_a_star(src, dest):
     best_solution = 10000000
     worst_cost = 0
 
-    def set_node_values(next_node, prev_node):
+    # Helper function to change cost and estimate associated with next_node, also setting a pointer
+    # back to prev_node
+    def _set_node_values(next_node, prev_node):
         next_node.cost = prev_node.cost + 1
         # get estimate of cost remaining
         next_node.est = next_node.get_word_distance(dest)
@@ -93,14 +102,14 @@ def solve_a_star(src, dest):
                 pass
             elif neighbor.visited_flag: # if in closed_list
                 if neighbor.cost > node.cost + 1:
-                    # We've found a more efficient way to get to this node
-                    set_node_values(neighbor, node)
+                    # We've found a more efficient way to get to this neighbor
+                    _set_node_values(neighbor, node)
                     if neighbor is dest:
                         if neighbor.cost < best_solution:
                             best_solution = neighbor.cost
             else:
-                # Node not in open or closed list
-                set_node_values(neighbor, node)
+                # Neighbor not in open or closed list
+                _set_node_values(neighbor, node)
                 if neighbor is dest:
                     # This is the solution
                     final_node = neighbor
