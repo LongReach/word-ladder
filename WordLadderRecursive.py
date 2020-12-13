@@ -13,92 +13,97 @@ wg.Node.set_factory_func(node_factory)
 # MEMOIZATION
 # -------------------------------------------------------
 
-# Will contain lists of nodes
-memoization_lists = []
+memoized_nodes = []
 
+# the_list contains a path from the first node in the list to the destination node, which is last
 def memoize_solution(the_list):
     # Only bother if list is long enough to be useful
-    if len(the_list) <= 2:
+    if the_list is None or len(the_list) <= 2:
         return
-    new_list = copy.copy(the_list)
-    memoization_lists.append(new_list)
-    for n in new_list:
-        n.add_memoize_list(new_list)
+    first_node = the_list[0]
+    first_node.set_memoize_list(the_list[1:])
+    memoized_nodes.append(first_node)
 
-def get_overlapping_memoize_lists():
-    results = []
-    for l in memoization_lists:
-        for n in l:
-            overlaps = n.get_overlapping_memoize_lists(l)
-            for ol in overlaps:
-                if ol not in results:
-                    results.append(ol)
-    return results
-
+def clear_memoization():
+    for n in memoized_nodes:
+        n.set_memoize_list(None)
+    memoized_nodes.clear()
 
 # RECURSIVE SOLUTION
 # -------------------------------------------------------
 
-# Each node in the path under consideration, not counting very last node
-explored_list = []
-# Length of shortest successful path found so far
-shortest_path_length: int = 20
-
-# Returns a list containing the nodes between src and dest, excluding src
-def get_steps(src, dest):
-    if src is dest:
-        return []
-    memo_list = dest.get_memoize_list_with_node(src)
-    if memo_list is not None:
-        print("Memoization exists for {} to {}: ".format(src.word, dest.word), wg.string_list(memo_list))
-    global shortest_path_length
-    explored_list.append(src)
-    if len(explored_list) >= shortest_path_length:
+# Given a path (a list of Nodes), try to compute the remainder of the path to the dest node
+# remaining_steps: number of steps we are permitted to get from last node in path to dest
+# Returns a remaining list of nodes (excluding those already in path) if any can be found, otherwise None
+def get_steps(path, dest, remaining_steps):
+    if remaining_steps == 0:
         # We already have a better solution, don't go further
-        explored_list.pop(-1)
-        return []
+        return None
 
-    best_subpath_count = 10000000
-    best_subpath = []
-    matches = src.neighbors
+    current_node = path[-1]
+    if current_node.get_word_distance(dest) > remaining_steps:
+        # No point to continuing, we don't have enough steps left to get to the other word
+        return None
+
+    if current_node.memoization_list is not None:
+        # We already have a best solution from current_node to dest, so try to use it
+        if len(current_node.memoization_list) > remaining_steps:
+            # The memoization list isn't useful; the best solution from here takes too many steps.
+            return None
+        else:
+            result = path + current_node.memoization_list
+            print("A fast solution: ", wg.string_list(result))
+            return current_node.memoization_list
+
+    current_node.visited_flag = True
+    matches = current_node.neighbors
+    # First, search all neighbors for goal. If we find one, this saves us from any more recursion.
     for m in matches:
-        if m.word == dest.word:
+        if m is dest:
             # this is our goal!
-            result = explored_list + [m]
-            print("A solution: ", wg.string_list(result))
-            shortest_path_length = len(explored_list)
-            explored_list.pop(-1)
+            result = path + [m]
+            print("A slow solution: ", wg.string_list(result))
+            current_node.visited_flag = False
             return [m]
-        if m not in explored_list:
+
+    # Goal node has not been found, attempt recursion into branches. We will choose the branch with the most
+    # efficient remaining path.
+    new_remaining_steps = remaining_steps - 1 # deducting one step for the neighbor, m
+    best_subpath_count = 1000000
+    best_subpath = None
+    for m in matches:
+        if not m.visited_flag:
             # See if there's a way between m and dest
-            steps = get_steps(m, dest)
-            count = len(steps)
-            if count > 0 and count < best_subpath_count:
-                best_subpath_count = count
-                best_subpath = [m] + steps
-    explored_list.pop(-1)
-    #print("Result: ", best_list)
+            path.append(m)
+            subpath = get_steps(path, dest, new_remaining_steps)
+            if subpath is not None:
+                subpath = [m] + subpath
+                if len(subpath) < best_subpath_count:
+                    best_subpath_count = len(subpath)
+                    # The next branch will be even more limited in terms of remaining steps
+                    # deducting one step for the neighbor, m, and one step because result must be better then the same.
+                    new_remaining_steps = best_subpath_count - 2
+                    best_subpath = subpath
+            path.pop(-1)
+    current_node.visited_flag = False
+    # Save the path from m to dest so we can use it later
+    memoize_solution(best_subpath)
     return best_subpath
 
-def do_word_ladder(src, dest):
-    global shortest_path_length
-    shortest_path_length = 20
+def do_word_ladder(src, dest, max_dist=20):
+    if len(src) != len(dest): return None
     src_node = wg.Node.find_node(src)
+    if src_node is None: return None
+    path = [src_node]
     dest_node = wg.Node.find_node(dest)
-    print("Word ladder from {} to {}".format(src, dest))
-    result = [src_node] + get_steps(src_node, dest_node)
-    memoize_solution(result)
-    print("Steps are: ", wg.string_list(result))
+    if dest_node is None or dest_node is src_node: return None
+    print("Word ladder from {} to {}, max_dist={}".format(src, dest, max_dist))
+    clear_memoization()
+    result = [src_node] + get_steps(path, dest_node, max_dist)
+    str_list = wg.string_list(result)
+    print("Steps are: ", str_list)
+    return str_list
 
 test.set_word_ladder_func(do_word_ladder)
 test.run_test()
 
-print("")
-print("MEMOIZATION LISTS")
-for l in memoization_lists:
-    print(wg.string_list(l))
-print("")
-print("OVERLAPPING MEMOIZATION LISTS")
-overlapping_lists = get_overlapping_memoize_lists()
-for ol in overlapping_lists:
-    print(wg.string_list(ol))

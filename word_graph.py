@@ -12,9 +12,10 @@ class Node():
 
     def __init__(self, word):
         self.word = word
+        self.visited_flag = False
         self.neighbors = []
         # All known memoization lists that have this node on their route
-        self.memoization_lists = []
+        self.memoization_list = None
 
     def add_neighbor(self, node):
         self.neighbors.append(node)
@@ -27,25 +28,21 @@ class Node():
             new_list.insert(idx, n)
         return new_list
 
+    def get_word_distance(self, other_node):
+        dist = 0
+        for idx in range(len(self.word)):
+            if self.word[idx] != other_node.word[idx]:
+                dist = dist + 1
+        return dist
+
     def list_matches(self):
         return [node.word for node in self.neighbors]
 
-    def add_memoize_list(self, the_list):
-        self.memoization_lists.append(the_list)
+    def set_memoize_list(self, the_list):
+        self.memoization_list = the_list
 
-    def get_memoize_list_with_node(self, node):
-        for l in self.memoization_lists:
-            for n in l:
-                if n is node:
-                    return l
-        return None
-
-    def get_overlapping_memoize_lists(self, a_list):
-        results = []
-        for l in self.memoization_lists:
-            if l is not a_list:
-                results.append(l)
-        return results
+    def get_memoize_list(self):
+        return self.memoization_list
 
     # The factory function allows us to make instances of Node subclasses
     @staticmethod
