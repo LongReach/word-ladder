@@ -22,7 +22,6 @@ class Node(object):
 
     def __init__(self, word):
         self.word = word
-        self.visited_flag = False
         self.neighbors = []
 
     def add_neighbor(self, node):

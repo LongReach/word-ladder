@@ -16,6 +16,7 @@ class MemNode(wg.Node):
         super().__init__(word)
         # All known memoization lists that have this node on their route
         self.memoization_list = None
+        self.visited_flag = False
 
     def set_memoize_list(self, the_list):
         self.memoization_list = the_list

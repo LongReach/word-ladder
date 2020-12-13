@@ -13,6 +13,7 @@ class AStarNode(wg.Node):
     def __init__(self, word):
         super().__init__(word)
         self.open_list_flag = False
+        self.closed_list_flag = False
         self.cost = 1000000
         self.est = 0
         self.parent = None
@@ -24,7 +25,7 @@ class AStarNode(wg.Node):
         AStarNode.closed_list.clear()
         for n in wg.Node.node_list:
             n.open_list_flag = False
-            n.visited_flag = False
+            n.closed_list_flag = False
             n.cost = 1000000
             n.est = 1000000
             n.parent = None
@@ -100,7 +101,7 @@ def solve_a_star(src, dest):
         for neighbor in node.neighbors:
             if neighbor.open_list_flag: # if in open_list
                 pass
-            elif neighbor.visited_flag: # if in closed_list
+            elif neighbor.closed_list_flag: # if in closed_list
                 if neighbor.cost > node.cost + 1:
                     # We've found a more efficient way to get to this neighbor
                     _set_node_values(neighbor, node)
@@ -121,7 +122,7 @@ def solve_a_star(src, dest):
                     # We only visit it if there's hope of beating the best solution found so far
                     neighbor.open_list_flag = True
                     open_list.append(neighbor)
-        node.visited_flag = True
+        node.closed_list_flag = True
         closed_list.append(node)
 
     out_list = []
