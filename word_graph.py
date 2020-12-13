@@ -1,6 +1,5 @@
 import random
-
-print("*** WORD GRAPH ***")
+import time
 
 # Both the recursive and A-Star solutions to the word ladder problem rely on a connected graph. Each node
 # on the graph represents a word, and its neighbors are the nodes that can be reached by changing a single
@@ -128,7 +127,22 @@ def find_matches(word):
 
 # Given a node list, return a list of words
 def string_list(node_list):
+    if node_list is None:
+        return []
     return [n.word for n in node_list]
+
+the_random_seed = 0
+
+def set_random_seed(seed):
+    global the_random_seed
+    if seed is None:
+        # choose a seed at random (sort of)
+        seed = int(time.time()) % 100000
+    the_random_seed = seed
+    random.seed(the_random_seed)
+
+def get_random_seed():
+    return the_random_seed
 
 # Return a random word from the words available
 def get_random_word(length=0):
