@@ -103,3 +103,9 @@ Argument | Description
 `seed` | A seed for random number generation. Use same seed for repeatable results.
 `test` | Which test to run. 0 = basic test, 1 = full test, 2 = hard words test
 
+## Sample Output
+
+[Recursive Solution](SampleOutputRecursive.txt)
+
+[A-Star Solution](SampleOutputAStar.txt)
+

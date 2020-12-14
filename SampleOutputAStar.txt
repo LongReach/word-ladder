@@ -1,0 +1,167 @@
+Running test  1
+Word ladder from SEED to TREE, max_dist=20
+Steps are:  ['SEED', 'TEED', 'TYED', 'TYEE', 'TREE']
+Word ladder from NOPE to BOOM, max_dist=20
+Steps are:  ['NOPE', 'NODE', 'BODE', 'BORE', 'BORM', 'BOOM']
+Word ladder from ULNA to BLAB, max_dist=20
+Steps are:  ['ULNA', 'ULVA', 'URVA', 'UREA', 'AREA', 'ARED', 'BRED', 'BLED', 'BLAD', 'BLAB']
+Word ladder from HEAD to TAIL, max_dist=20
+Steps are:  ['HEAD', 'TEAD', 'TEAL', 'TAAL', 'TAIL']
+Word ladder from TOAD to FROG, max_dist=20
+Steps are:  ['TOAD', 'TRAD', 'TROD', 'TROG', 'FROG']
+Word ladder from COOK to FISH, max_dist=20
+Steps are:  ['COOK', 'BOOK', 'BOSK', 'BISK', 'FISK', 'FISH']
+Word ladder from BUTT to BUTT, max_dist=20
+Steps are:  None
+Word ladder from TEAM to ME, max_dist=20
+Steps are:  None
+Word ladder from WORD to XXXX, max_dist=20
+Steps are:  None
+Word ladder from YYYY to WORD, max_dist=20
+Steps are:  None
+Word ladder from FFFF to ----, max_dist=20
+Steps are:  None
+Word ladder from EMES to ERGO, max_dist=20
+Steps are:  ['EMES', 'ERES', 'ERGS', 'ERGO']
+Word ladder from HEY to TOE, max_dist=20
+Steps are:  ['HEY', 'HOY', 'TOY', 'TOE']
+Word ladder from FOUS to SOKE, max_dist=20
+Steps are:  ['FOUS', 'SOUS', 'SOLS', 'SOLE', 'SOKE']
+Word ladder from HAEN to GYMS, max_dist=20
+Steps are:  ['HAEN', 'GAEN', 'GAES', 'GAMS', 'GYMS']
+Word ladder from CUSP to EXEC, max_dist=20
+Steps are:  ['CUSP', 'CUSS', 'CUES', 'DUES', 'DYES', 'EYES', 'EXES', 'EXEC']
+Word ladder from HALM to DYAD, max_dist=20
+Steps are:  ['HALM', 'HELM', 'HELD', 'HEAD', 'DEAD', 'DYAD']
+Word ladder from PUCK to YOCK, max_dist=20
+Steps are:  ['PUCK', 'YUCK', 'YOCK']
+Word ladder from JIAO to GOOS, max_dist=20
+Steps are:  ['JIAO', 'CIAO', 'CITO', 'CITS', 'GITS', 'GIOS', 'GOOS']
+Word ladder from SAMA to TEED, max_dist=20
+Steps are:  ['SAMA', 'SAMS', 'TAMS', 'TEMS', 'TEES', 'TEED']
+Word ladder from WEEP to FENT, max_dist=20
+Steps are:  ['WEEP', 'WEET', 'FEET', 'FENT']
+Word ladder from SEE to TIC, max_dist=20
+Steps are:  ['SEE', 'TEE', 'TIE', 'TIC']
+Word ladder from FRAE to SHIM, max_dist=20
+Steps are:  ['FRAE', 'FRAS', 'FRIS', 'SRIS', 'SAIS', 'SAIM', 'SHIM']
+Word ladder from WAND to VUGH, max_dist=20
+Steps are:  ['WAND', 'WANS', 'VANS', 'VAGS', 'VUGS', 'VUGH']
+Word ladder from SEXY to FINO, max_dist=20
+Steps are:  ['SEXY', 'SEXT', 'SENT', 'FENT', 'FEND', 'FIND', 'FINO']
+Word ladder from ALEC to ALEC, max_dist=20
+Steps are:  None
+Word ladder from ARGH to QUIZ, max_dist=20
+Steps are:  ['ARGH', 'ARCH', 'ARCS', 'ARIS', 'CRIS', 'CRIT', 'CUIT', 'QUIT', 'QUIZ']
+Word ladder from WAWE to PIPI, max_dist=20
+Steps are:  ['WAWE', 'WADE', 'WIDE', 'WIPE', 'PIPE', 'PIPI']
+Word ladder from OBO to GAT, max_dist=20
+Steps are:  ['OBO', 'ABO', 'ABS', 'AAS', 'GAS', 'GAT']
+Word ladder from HERS to ICER, max_dist=20
+Steps are:  ['HERS', 'GERS', 'GEES', 'TEES', 'TRES', 'IRES', 'ICES', 'ICER']
+Word ladder from OAF to MES, max_dist=20
+Steps are:  ['OAF', 'KAF', 'KAS', 'MAS', 'MES']
+Word ladder from EUGE to DANG, max_dist=20
+Steps are:  ['EUGE', 'LUGE', 'LUNE', 'DUNE', 'DUNG', 'DANG']
+Word ladder from ECCO to BULB, max_dist=20
+Steps are:  ['ECCO', 'ECHO', 'ECHE', 'ACHE', 'ACNE', 'AUNE', 'DUNE', 'DULE', 'DULL', 'BULL', 'BULB']
+Word ladder from REG to NIX, max_dist=20
+Steps are:  ['REG', 'NEG', 'NOG', 'NOX', 'NIX']
+Word ladder from YAWY to HAPS, max_dist=20
+Steps are:  ['YAWY', 'YAWS', 'HAWS', 'HAPS']
+Word ladder from FAUN to SWAP, max_dist=20
+Steps are:  ['FAUN', 'FAAN', 'FLAN', 'FLAP', 'SLAP', 'SWAP']
+Word ladder from MAKE to UMPS, max_dist=20
+Steps are:  ['MAKE', 'MAKS', 'GAKS', 'GAUS', 'EAUS', 'EMUS', 'UMUS', 'UMPS']
+Word ladder from GEEK to FORK, max_dist=20
+Steps are:  ['GEEK', 'DEEK', 'DOEK', 'DORK', 'FORK']
+Word ladder from KINK to BREY, max_dist=20
+Steps are:  ['KINK', 'BINK', 'BONK', 'BOAK', 'BRAK', 'BRAY', 'BREY']
+Word ladder from FAAS to GECK, max_dist=20
+Steps are:  ['FAAS', 'BAAS', 'BACS', 'BACK', 'BECK', 'GECK']
+Word ladder from TELA to ELFS, max_dist=20
+Steps are:  ['TELA', 'TELS', 'EELS', 'ELLS', 'ELFS']
+Word ladder from BLAD to LEVA, max_dist=20
+Steps are:  ['BLAD', 'BEAD', 'LEAD', 'LEND', 'LENO', 'LEVO', 'LEVA']
+Word ladder from GIS to OHS, max_dist=20
+Steps are:  ['GIS', 'AIS', 'AHS', 'OHS']
+Word ladder from MAP to THE, max_dist=20
+Steps are:  ['MAP', 'TAP', 'TAE', 'THE']
+Word ladder from HOOK to BUBS, max_dist=20
+Steps are:  ['HOOK', 'BOOK', 'BOOS', 'BOBS', 'BUBS']
+Word ladder from LATH to MUSK, max_dist=20
+Steps are:  ['LATH', 'MATH', 'MASH', 'MUSH', 'MUSK']
+Word ladder from DANS to GRIS, max_dist=20
+Steps are:  ['DANS', 'DAIS', 'KAIS', 'KRIS', 'GRIS']
+Word ladder from NOT to OWT, max_dist=20
+Steps are:  ['NOT', 'OOT', 'OWT']
+Word ladder from SEI to AFT, max_dist=20
+Steps are:  ['SEI', 'SET', 'SIT', 'AIT', 'AFT']
+Word ladder from NUTS to SUNG, max_dist=20
+Steps are:  ['NUTS', 'NUNS', 'SUNS', 'SUNG']
+Word ladder from UFOS to GUSH, max_dist=20
+Steps are:  ['UFOS', 'UDOS', 'ADOS', 'ADDS', 'ODDS', 'OUDS', 'BUDS', 'BUSS', 'BUSH', 'GUSH']
+
+TEST RESULTS:
+SEED to TREE: ['SEED', 'TEED', 'TYED', 'TYEE', 'TREE']  time=0.01296377182006836
+NOPE to BOOM: ['NOPE', 'NODE', 'BODE', 'BORE', 'BORM', 'BOOM']  time=0.06981420516967773
+ULNA to BLAB: ['ULNA', 'ULVA', 'URVA', 'UREA', 'AREA', 'ARED', 'BRED', 'BLED', 'BLAD', 'BLAB']  time=0.006013631820678711
+HEAD to TAIL: ['HEAD', 'TEAD', 'TEAL', 'TAAL', 'TAIL']  time=0.0030164718627929688
+TOAD to FROG: ['TOAD', 'TRAD', 'TROD', 'TROG', 'FROG']  time=0.0029935836791992188
+COOK to FISH: ['COOK', 'BOOK', 'BOSK', 'BISK', 'FISK', 'FISH']  time=0.012975931167602539
+Failed for: BUTT to BUTT
+Failed for: TEAM to ME
+Failed for: WORD to XXXX
+Failed for: YYYY to WORD
+Failed for: FFFF to ----
+EMES to ERGO: ['EMES', 'ERES', 'ERGS', 'ERGO']  time=0.0030291080474853516
+HEY to TOE: ['HEY', 'HOY', 'TOY', 'TOE']  time=0.002994060516357422
+FOUS to SOKE: ['FOUS', 'SOUS', 'SOLS', 'SOLE', 'SOKE']  time=0.018984317779541016
+HAEN to GYMS: ['HAEN', 'GAEN', 'GAES', 'GAMS', 'GYMS']  time=0.003991365432739258
+CUSP to EXEC: ['CUSP', 'CUSS', 'CUES', 'DUES', 'DYES', 'EYES', 'EXES', 'EXEC']  time=0.16556262969970703
+HALM to DYAD: ['HALM', 'HELM', 'HELD', 'HEAD', 'DEAD', 'DYAD']  time=0.008976221084594727
+PUCK to YOCK: ['PUCK', 'YUCK', 'YOCK']  time=0.002991914749145508
+JIAO to GOOS: ['JIAO', 'CIAO', 'CITO', 'CITS', 'GITS', 'GIOS', 'GOOS']  time=0.005014657974243164
+SAMA to TEED: ['SAMA', 'SAMS', 'TAMS', 'TEMS', 'TEES', 'TEED']  time=0.010022878646850586
+WEEP to FENT: ['WEEP', 'WEET', 'FEET', 'FENT']  time=0.0029916763305664062
+SEE to TIC: ['SEE', 'TEE', 'TIE', 'TIC']  time=0.0039899349212646484
+FRAE to SHIM: ['FRAE', 'FRAS', 'FRIS', 'SRIS', 'SAIS', 'SAIM', 'SHIM']  time=0.02501654624938965
+WAND to VUGH: ['WAND', 'WANS', 'VANS', 'VAGS', 'VUGS', 'VUGH']  time=0.01400136947631836
+SEXY to FINO: ['SEXY', 'SEXT', 'SENT', 'FENT', 'FEND', 'FIND', 'FINO']  time=0.021941661834716797
+Failed for: ALEC to ALEC
+ARGH to QUIZ: ['ARGH', 'ARCH', 'ARCS', 'ARIS', 'CRIS', 'CRIT', 'CUIT', 'QUIT', 'QUIZ']  time=0.0220334529876709
+WAWE to PIPI: ['WAWE', 'WADE', 'WIDE', 'WIPE', 'PIPE', 'PIPI']  time=0.020030975341796875
+OBO to GAT: ['OBO', 'ABO', 'ABS', 'AAS', 'GAS', 'GAT']  time=0.01795339584350586
+HERS to ICER: ['HERS', 'GERS', 'GEES', 'TEES', 'TRES', 'IRES', 'ICES', 'ICER']  time=0.6922547817230225
+OAF to MES: ['OAF', 'KAF', 'KAS', 'MAS', 'MES']  time=0.007983922958374023
+EUGE to DANG: ['EUGE', 'LUGE', 'LUNE', 'DUNE', 'DUNG', 'DANG']  time=0.004998922348022461
+ECCO to BULB: ['ECCO', 'ECHO', 'ECHE', 'ACHE', 'ACNE', 'AUNE', 'DUNE', 'DULE', 'DULL', 'BULL', 'BULB']  time=0.03296995162963867
+REG to NIX: ['REG', 'NEG', 'NOG', 'NOX', 'NIX']  time=0.01897454261779785
+YAWY to HAPS: ['YAWY', 'YAWS', 'HAWS', 'HAPS']  time=0.002993345260620117
+FAUN to SWAP: ['FAUN', 'FAAN', 'FLAN', 'FLAP', 'SLAP', 'SWAP']  time=0.005984067916870117
+MAKE to UMPS: ['MAKE', 'MAKS', 'GAKS', 'GAUS', 'EAUS', 'EMUS', 'UMUS', 'UMPS']  time=0.7879674434661865
+GEEK to FORK: ['GEEK', 'DEEK', 'DOEK', 'DORK', 'FORK']  time=0.0060231685638427734
+KINK to BREY: ['KINK', 'BINK', 'BONK', 'BOAK', 'BRAK', 'BRAY', 'BREY']  time=0.13268542289733887
+FAAS to GECK: ['FAAS', 'BAAS', 'BACS', 'BACK', 'BECK', 'GECK']  time=0.021941661834716797
+TELA to ELFS: ['TELA', 'TELS', 'EELS', 'ELLS', 'ELFS']  time=0.002991199493408203
+BLAD to LEVA: ['BLAD', 'BEAD', 'LEAD', 'LEND', 'LENO', 'LEVO', 'LEVA']  time=0.07288527488708496
+GIS to OHS: ['GIS', 'AIS', 'AHS', 'OHS']  time=0.008936643600463867
+MAP to THE: ['MAP', 'TAP', 'TAE', 'THE']  time=0.003991365432739258
+HOOK to BUBS: ['HOOK', 'BOOK', 'BOOS', 'BOBS', 'BUBS']  time=0.004985809326171875
+LATH to MUSK: ['LATH', 'MATH', 'MASH', 'MUSH', 'MUSK']  time=0.003076314926147461
+DANS to GRIS: ['DANS', 'DAIS', 'KAIS', 'KRIS', 'GRIS']  time=0.02900552749633789
+NOT to OWT: ['NOT', 'OOT', 'OWT']  time=0.002993345260620117
+SEI to AFT: ['SEI', 'SET', 'SIT', 'AIT', 'AFT']  time=0.013051033020019531
+NUTS to SUNG: ['NUTS', 'NUNS', 'SUNS', 'SUNG']  time=0.00394129753112793
+UFOS to GUSH: ['UFOS', 'UDOS', 'ADOS', 'ADDS', 'ODDS', 'OUDS', 'BUDS', 'BUSS', 'BUSH', 'GUSH']  time=0.03158974647521973
+Average length:  5.822222222222222
+Longest length:  11   ['ECCO', 'ECHO', 'ECHE', 'ACHE', 'ACNE', 'AUNE', 'DUNE', 'DULE', 'DULL', 'BULL', 'BULB']
+Average time:  0.046069187276503616
+Longest time:  0.7879674434661865   ['MAKE', 'MAKS', 'GAKS', 'GAUS', 'EAUS', 'EMUS', 'UMUS', 'UMPS']
+Random seed:  69175
+
+PROBLEM LENGTH ENTRIES:
+['ULNA', 'ULVA', 'URVA', 'UREA', 'AREA', 'ARED', 'BRED', 'BLED', 'BLAD', 'BLAB']  length=10
+['ARGH', 'ARCH', 'ARCS', 'ARIS', 'CRIS', 'CRIT', 'CUIT', 'QUIT', 'QUIZ']  length=9
+['ECCO', 'ECHO', 'ECHE', 'ACHE', 'ACNE', 'AUNE', 'DUNE', 'DULE', 'DULL', 'BULL', 'BULB']  length=11
+['UFOS', 'UDOS', 'ADOS', 'ADDS', 'ODDS', 'OUDS', 'BUDS', 'BUSS', 'BUSH', 'GUSH']  length=10
