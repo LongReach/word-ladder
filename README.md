@@ -42,6 +42,10 @@ FROG <-
 
 ## Solutions
 
+![](images/ConnectedGraphDiagram.png)
+
+`Example of Connected Graph`
+
 A dictionary of common (or uncommon!) three and four-letter words is processed into a connected graph. Each node in the graph represents a word and neighboring nodes contain words that are one letter-change away. `TOAD` and `LOAD` would be neighbors, while `TOAD` and `LEAD` would not.
 
 To find a solution, an algorithm will explore the connected graph until it finds a path between the start word and the end word. Once it has a path, it will reduce the search space and try to find a more efficient path. The search ceases when the allowed search space has been exhausted.
@@ -49,6 +53,10 @@ To find a solution, an algorithm will explore the connected graph until it finds
 I explore two different solution methods here:
 * Depth-first search
 * Breadth-first search
+
+![](images/DepthFirstBreadthFirst.jpeg)
+
+`The Two Approaches (standard CS 101 stuff)`
 
 ### Method 1 -- Depth-First: Recursive
 
@@ -64,6 +72,10 @@ Comments within the file explain the workings in more detail.
 ### Method 1 -- Breadth-First: A-Star
 
 This algorithm uses the well-known A-Star route-finding heuristic to discover a path from the first node to the goal. Because it focuses on the nodes closest to the start node, before moving on to more distant ones, performance is pretty fast. 
+
+![](images/AStarAlgorithm.png)
+
+`A-Star Illustrated: the green blocks are treated as obstacles in second panel`
 
 Run with:
 > python WordLadderAStar.py
@@ -90,4 +102,10 @@ Argument | Description
 `verbose` | Prints extra debugging information.
 `seed` | A seed for random number generation. Use same seed for repeatable results.
 `test` | Which test to run. 0 = basic test, 1 = full test, 2 = hard words test
+
+## Sample Output
+
+[Recursive Solution](SampleOutputRecursive.txt)
+
+[A-Star Solution](SampleOutputAStar.txt)
 
