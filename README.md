@@ -4,7 +4,9 @@ Solutions to the Word Ladder Problem
 
 ## Why I Wrote this Code
 
-To prepare for coding problems that I might be given as I interview for software engineer jobs. I've written a lot of sophisticated code in my life, but it's easy to get rusty on particular algorithms or language features. Doing exercises like this is a valuable mind-sharpener.
+This was a coding problem I picked out of a hat (from a selection of problems on the web). I did a pass at it a few years ago in C++, but didn't finish. I resurrected the problem as a Python coding exercise and decided to do a deep dive over a couple days. It was a good mind-sharpener for my current job search process.
+
+The code here is my original creation. Other than some Googling on the basics of the algorithms, which I'd used in the past, this was my own work. Please respect my effort and credit me if you use this code.
 
 ## Overview
 
