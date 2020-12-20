@@ -64,6 +64,10 @@ I explore two different solution methods here:
 
 This algorithm uses a recursive function to carry out the search. It also takes advantage of the dynamic programming concept known as "memoization", wherein optimal partial solutions are cached. The algorithm aggressively prunes out branches on the search tree that it determines to be useless to explore.
 
+![](images/Recursion.png)
+
+`Recursion!`
+
 Performance is generally good, but there are cases where the algorithm can take minutes to crack a puzzle.
 
 Run with:
