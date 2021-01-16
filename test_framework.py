@@ -96,8 +96,10 @@ def full_test():
     # Do some random ladders
     # These words have a connection between them
     for i in range(20):
-        word1 = wg.get_random_word()
-        word2, random_list = wg.get_word_by_random_wander(word1, 30)
+        while(True):
+            word1 = wg.get_random_word()
+            word2, random_list = wg.get_word_by_random_wander(word1, 30)
+            if word1 != word2: break
         word_ladder_func(word1, word2, max_dist=20)
 
     # These words might or might not have a connection between them
