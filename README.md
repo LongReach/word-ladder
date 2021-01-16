@@ -108,10 +108,11 @@ Argument | Description
 `verbose` | Prints extra debugging information.
 `seed` | A seed for random number generation. Use same seed for repeatable results.
 `test` | Which test to run. 0 = basic test, 1 = full test, 2 = hard words test
+`wordfile` | A file to turn into a dictionary, parsing out all unique 3 - 5 letter words. If not given, use default data
 
 ## Sample Output
 
-[Recursive Solution](SampleOutputRecursive.txt)
+[Recursive Solution](data/SampleOutputRecursive.txt)
 
-[A-Star Solution](SampleOutputAStar.txt)
+[A-Star Solution](data/SampleOutputAStar.txt)
 

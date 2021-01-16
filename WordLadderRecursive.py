@@ -7,6 +7,7 @@ parser = argparse.ArgumentParser(description='Recursive solution to word ladder 
 parser.add_argument("-v", "--verbose", help="If set, print extra info", action="store_true")
 parser.add_argument("--test", help="Which test to run: 0=simple, 1=full, 2=difficult words", type=int, default=1)
 parser.add_argument("--seed", help="A seed for random number generation (to reproduce same set of games)", type=int, default=-1)
+parser.add_argument("--wordfile", help="A text file to parse into list of words", type=str, default="")
 args = parser.parse_args()
 
 test.set_verbose(args.verbose)
@@ -51,7 +52,7 @@ def node_factory(word):
     return MemNode(word)
 
 wg.Node.set_factory_func(node_factory)
-wg.create_nodes()
+wg.create_nodes(None if len(args.wordfile) == 0 else args.wordfile)
 test.preliminary_test()
 
 # RECURSIVE SOLUTION

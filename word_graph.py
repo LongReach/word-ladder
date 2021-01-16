@@ -1,5 +1,11 @@
 import random
 import time
+import re
+import os.path
+
+# List of all the words in the dictionary
+word_list = []
+the_random_seed = 0
 
 # Both the recursive and A-Star solutions to the word ladder problem rely on a connected graph. Each node
 # on the graph represents a word, and its neighbors are the nodes that can be reached by changing a single
@@ -138,22 +144,29 @@ class Node(object):
             Node.networks.append(nodes_in_network)
             current_network = current_network + 1
 
-# List of all the words in the dictionary
-word_list = []
+def process_text_files(src_file=None):
+    global word_list
+    # Process the text files
+    file_list = []
+    if src_file is None:
+        file_list = file_list + [os.path.join("data", "FourLetterWords.txt"), os.path.join("data", "ThreeLetterWords.txt")]
+    else:
+        file_list.append(src_file)
 
-# Process the text files
-file_list = ["FourLetterWords.txt", "ThreeLetterWords.txt"]
-for f_name in file_list:
-    file1 = open(f_name, 'r')
-    file_lines = file1.readlines()
+    word_set = set()
+    for f_name in file_list:
+        with open(f_name) as words_file:
+            lines = words_file.readlines()
+            for line in lines:
+                words = re.findall("[a-zA-Z]+", line)
+                for word in words:
+                    uc = word.upper()
+                    if len(uc) >= 3 and len(uc) <= 5:
+                        word_set.add(uc)
+    word_list = list(word_set)
 
-    # Strips the newline character
-    for line in file_lines:
-        words = line.strip().split(" ")
-        # Remove any words of zero length, add remaining words to big list
-        word_list = word_list + [w for w in filter(lambda x: len(x) > 0, words)]
-
-def create_nodes():
+def create_nodes(word_file=None):
+    process_text_files(word_file)
     Node.populate_nodes_from_word_list(word_list)
     Node.find_isolated_nodes()
 
@@ -175,8 +188,6 @@ def is_path_possible(word1, word2):
     node2 = Node.find_node(word2)
     if node1 is None or node2 is None: return False, False
     return node1.network_number == node2.network_number, True
-
-the_random_seed = 0
 
 def set_random_seed(seed):
     global the_random_seed
