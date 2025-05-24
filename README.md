@@ -4,9 +4,15 @@ Solutions to the Word Ladder Problem
 
 ## Why I Wrote this Code
 
+_2025 Note_
+
+For potential employers: I created this repository back in 2020. My Python skills have improved a lot since then.
+
+_Original Text_
+
 This was a coding problem I picked out of a hat (from a selection of problems on the web). I did a pass at it a few years ago in C++, but didn't finish. I resurrected the problem as a Python coding exercise and decided to do a deep dive over a couple days. It was a good mind-sharpener for my current job search process.
 
-The code here is my original creation. Other than some Googling on the basics of the algorithms, which I'd used in the past, this was my own work. Please respect my effort and credit me if you use this code.
+The code here is my original creation.
 
 ## Overview
 
