@@ -2,11 +2,11 @@
 
 Solutions to the Word Ladder Problem
 
+## 2025 Note
+
+To potential employers: I created this repository back in 2020. My Python skills have improved a lot since then.
+
 ## Why I Wrote this Code
-
-_2025 Note_
-
-For potential employers: I created this repository back in 2020. My Python skills have improved a lot since then.
 
 _Original Text_
 
